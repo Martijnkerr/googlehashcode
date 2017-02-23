@@ -2,6 +2,7 @@ class Loader
   attr_reader :latencies
   attr_reader :capacity
   attr_reader :video_requests
+  attr_reader :video_sizes
 
   def initialize(file_path)
     @file_path = file_path
@@ -10,7 +11,7 @@ class Loader
   def load
     file = File.open(@file_path, 'r')
     @videos_no, @endpoints, @requests, @caches, @capacity = file.readline.split.map(&:to_i)
-    sizes = file.readline.split.map(&:to_i)
+    @video_sizes = file.readline.split.map(&:to_i)
 
     @latencies = []
     @endpoints.times do
