@@ -1,5 +1,6 @@
 class Loader
   attr_reader :latencies
+  attr_reader :capacity
 
   def initialize(file_path)
     @file_path = file_path
