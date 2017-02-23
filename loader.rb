@@ -24,11 +24,12 @@ class Loader
       @latencies << endpoint_lats
     end
 
-    @video_requests = {}
+    @video_requests = []
     @requests.times do
       video_id, endpoint_idx, requests_no = file.readline.split.map(&:to_i)
-      @video_requests[video_id] = {} if @video_requests[video_id].nil?
-      @video_requests[video_id][endpoint_idx] = requests_no
+      @video_requests << {video_id: video_id,
+                          endpoint_idx: endpoint_idx,
+                          requests_no: requests_no}
     end
   end
 end
